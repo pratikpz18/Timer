@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>COUNTDOWN TIMER</title>
+	<meta charset="utf-8">
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: sans-serif;
+	}
+	body{
+		background-color: #6fa5b1;
+		color: #382f60 ;
+		height: 100vh;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+	.container{
+		font-size: 18px;
+		width:30%;
+		text-align: center;
+	}
+	input{
+		width: 36px;
+		font-size: 24px;
+		margin-bottom :1rem ;
+		background-color: #6fa5b1;
+		outline: none;
+		border: none;
+		border-bottom: 1px solid grey; 
+	}
+	label{
+		margin-right: 1.5rem;
+		font-weight: bold;
+	}
+	.secinput{
+		width: 2.8rem;
+	}
+	.fun{
+		margin-top: 1.5rem;
+	}
+	button{
+		font-size: 1.1rem;
+		background: #4e6b9f;
+		color: #f6f6f6 ;
+		outline: none;
+		border: none;
+		border-radius: 0.3rem;
+		padding:0.4rem 0.8rem;
+		margin-right:  1.5rem;	
+	}
+	button:hover{
+		background:#382f60;
+		opacity: 0.95;
+		transform: scale(1.1);
+	}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="inputt">
+			<input type="number" class="mininput" value="0" min="0" max="59">
+			<label>Minutes</label>
+			<input type="number" class="secinput" value="0" min="0" max="59">
+			<label>Seconds</label>
+		</div>
+		<div class="fun">
+			<button class="start">Start</button>
+			<button class="stop">Stop</button>
+			<button class="reset">Reset</button>
+		<div>
+	<div>
+</body>
+<script>
+	let sec = document.querySelector(".secinput");
+	let min = document.querySelector(".mininput");
+	let timer = document.querySelector(".Timer");
+	let str = document.querySelector(".start");
+	let res=document.querySelector(".reset");
+	let stop=document.querySelector(".stop");
+	let Interval ;
+	function detail(){
+		clearInterval(Interval);
+		Interval=setInterval(()=>{
+		sec.value--
+		if(sec.value < 0 && min.value > 0){
+			min.value--
+			sec.value = 59
+		}
+		else if(sec.value < 0){
+			clearInterval(Interval);
+			sec.value = 0
+			min.value = 0
+		}
+	},1000)
+	}
+	str.addEventListener('click',detail);
+	res.addEventListener("click",() => {
+		clearInterval(Interval);
+		sec.value = 0
+		min.value = 0
+	})
+	stop.addEventListener("click",() => {
+		clearInterval(Interval);
+	})
+</script>
+</html>
